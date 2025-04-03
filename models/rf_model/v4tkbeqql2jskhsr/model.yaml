@@ -1,0 +1,17 @@
+name: rf_model
+version: v4tkbeqql2jskhsr
+module: bentoml.sklearn
+labels: {}
+options: {}
+metadata: {}
+context:
+  framework_name: sklearn
+  framework_versions:
+    scikit-learn: 1.3.0
+  bentoml_version: 1.3.5
+  python_version: 3.8.20
+signatures:
+  predict:
+    batchable: false
+api_version: v1
+creation_time: '2025-04-03T07:38:50.006187+00:00'
