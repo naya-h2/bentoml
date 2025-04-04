@@ -18,7 +18,7 @@ svc = bentoml.Service("wine_classifier", runners=[knn_runner, rf_runner])
 @svc.api(input=PandasDataFrame(), output=PandasDataFrame())
 async def predict_knn_model(df: pd.DataFrame):
     # knn 모델 예측
-    print(df)
+    # print(df)
 
     prediction = await knn_runner.async_run(df)
     return pd.DataFrame(prediction, columns=["prediction"])

@@ -16,10 +16,16 @@ x_test_json = x_test_df.to_json(orient="records")
 # print(x_test_json)
 
 # API 요청 보내기
-url = "http://127.0.0.1:3000/predict_knn_model"  # BentoML 서비스 URL
+url_knn = "http://127.0.0.1:3000/predict_knn_model"  # BentoML 서비스 URL_knn
 headers = {"Content-Type": "application/json"}
-response = requests.post(url, data=x_test_json, headers=headers)
+response1 = requests.post(url_knn, data=x_test_json, headers=headers)
 
 # 결과 출력
-print(response.status_code)
-print(response.json())
+print("knn --- ")
+print(response1.json())
+
+url_rf = "http://127.0.0.1:3000/predict_rf_model"
+response2 = requests.post(url_knn, data=x_test_json, headers=headers)
+
+print("rf --- ")
+print(response2.json())
