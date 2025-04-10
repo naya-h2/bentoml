@@ -1,6 +1,7 @@
 import pandas as pd
 import bentoml
 from bentoml.io import PandasDataFrame
+from bentoml.io import JSON
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_wine
 
@@ -29,3 +30,14 @@ async def predict_rf_model(df: pd.DataFrame):
     # rf 모델 예측
     prediction = await rf_runner.async_run(df)
     return pd.DataFrame(prediction, columns=["prediction"])
+
+@svc.api(input=PandasDataFrame(), output=JSON())
+async def predict_all(df:pd.DataFrame):
+    p1 = await knn_runner.async_run(df)
+    p2 = await rf_runner.async_run(df)
+
+    result = {
+        "knn": p1.tolist(),
+        "rf": p2.tolist()
+    }
+    return result
